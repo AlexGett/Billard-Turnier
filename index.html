@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billard Turnierplan (16 Spieler) - PWA</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Billard Turnier">
+    <meta name="theme-color" content="#0056b3">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Billard Turnierplan (16 Spieler)</h1>
+
+    <div class="instructions">
+        <h2>Anleitung & Turnierinfos</h2>
+        <ol>
+            <li>Klicke auf **"Spieler einrichten (ein/aus)"**, um das Eingabefeld zu öffnen. Trage alle 16 Spielernamen (jeder Name in einer neuen Zeile) ein. Klicke dann auf "Spieler einrichten & Gruppen zuweisen". Du wirst gefragt, ob bestehende Daten gelöscht werden sollen.</li>
+            <li>In den Gruppen-Sektionen siehst du die Liste der Matches pro Gruppe. Das **nächste anstehende Spiel ist gelb hervorgehoben**. Klicke auf das Ergebnisfeld eines Matches, um das Ergebnis einzutragen (z.B. '3:1'). Gespielte Matches werden durchgestrichen.</li>
+            <li>Wenn alle Gruppenspiele beendet sind, klicke den Button **"Qualifizierte Spieler zur K.O.-Phase hinzufügen"**.</li>
+            <li>Trage dann die Gewinner der K.O.-Matches ein, indem du auf das leere Gewinnerfeld klickst. Sie rücken automatisch in die nächste Runde vor.</li>
+            <li>Klicke auf **"Nächste Spiele Gesamtübersicht (ein/aus)"**, um alle noch unvollständigen Matches des Turniers anzuzeigen.</li>
+        </ol>
+        <h3>Regeln:</h3>
+        <ul>
+            <li>**Punkte:** 2 Punkte für Sieg, 0 Punkte für Niederlage</li>
+            <li>**Tie-Breaker (bei Punktgleichheit):** 1. Punkte, 2. Frame-Differenz, 3. Mehr gewonnene Frames. (Direkter Vergleich ist nicht automatisiert)</li>
+        </ul>
+    </div>
+
+    ---
+
+    <button class="toggle-button" onclick="toggleSection('playerSetupSection')">Spieler einrichten (ein/aus)</button>
+    <button class="toggle-button" onclick="toggleSection('overallNextGamesSection')">Nächste Spiele Gesamtübersicht (ein/aus)</button>
+
+    <div id="playerSetupSection" class="collapsible-section" style="display: none;">
+        <h2>Spieler einrichten</h2>
+        <div class="player-input-area">
+            <label for="playerNamesInput">Trage 16 Spielernamen ein (jeder Name in einer neuen Zeile):</label><br>
+            <textarea id="playerNamesInput" rows="10" placeholder="Spieler 1&#10;Spieler 2&#10;...&#10;Spieler 16"></textarea>
+            <button class="setup-players-button" onclick="setupPlayersAndGroups()">Spieler einrichten & Gruppen zuweisen</button>
+        </div>
+
+        <h2>Zugewiesene Spieler & Gruppen</h2>
+        <table id="assignedPlayerList" class="player-list">
+            <thead>
+                <tr>
+                    <th>Spieler-ID</th>
+                    <th>Name</th>
+                    <th>Gruppe</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    ---
+
+    <h2>Gruppe A</h2>
+    <div class="group-section">
+        <div class="group-matches-list" id="groupA_matches_list">
+            <h3>Spiele Gruppe A</h3>
+            </div>
+        <div class="group-details">
+            <h3>Rangliste Gruppe A</h3>
+            <table class="group-table" id="groupA_ranking">
+                <thead>
+                    <tr>
+                        <th>Spieler</th>
+                        <th>Spiele</th>
+                        <th>Siege</th>
+                        <th>Niederlagen</th>
+                        <th>Frames+</th>
+                        <th>Frames-</th>
+                        <th>Diff.</th>
+                        <th>Punkte</th>
+                        <th>Rang</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    ---
+
+    <h2>Gruppe B</h2>
+    <div class="group-section">
+        <div class="group-matches-list" id="groupB_matches_list">
+            <h3>Spiele Gruppe B</h3>
+        </div>
+        <div class="group-details">
+            <h3>Rangliste Gruppe B</h3>
+            <table class="group-table" id="groupB_ranking">
+                <thead>
+                    <tr>
+                        <th>Spieler</th>
+                        <th>Spiele</th>
+                        <th>Siege</th>
+                        <th>Niederlagen</th>
+                        <th>Frames+</th>
+                        <th>Frames-</th>
+                        <th>Diff.</th>
+                        <th>Punkte</th>
+                        <th>Rang</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    ---
+
+    <h2>Gruppe C</h2>
+    <div class="group-section">
+        <div class="group-matches-list" id="groupC_matches_list">
+            <h3>Spiele Gruppe C</h3>
+        </div>
+        <div class="group-details">
+            <h3>Rangliste Gruppe C</h3>
+            <table class="group-table" id="groupC_ranking">
+                <thead>
+                    <tr>
+                        <th>Spieler</th>
+                        <th>Spiele</th>
+                        <th>Siege</th>
+                        <th>Niederlagen</th>
+                        <th>Frames+</th>
+                        <th>Frames-</th>
+                        <th>Diff.</th>
+                        <th>Punkte</th>
+                        <th>Rang</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    ---
+
+    <h2>Gruppe D</h2>
+    <div class="group-section">
+        <div class="group-matches-list" id="groupD_matches_list">
+            <h3>Spiele Gruppe D</h3>
+        </div>
+        <div class="group-details">
+            <h3>Rangliste Gruppe D</h3>
+            <table class="group-table" id="groupD_ranking">
+                <thead>
+                    <tr>
+                        <th>Spieler</th>
+                        <th>Spiele</th>
+                        <th>Siege</th>
+                        <th>Niederlagen</th>
+                        <th>Frames+</th>
+                        <th>Frames-</th>
+                        <th>Diff.</th>
+                        <th>Punkte</th>
+                        <th>Rang</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    ---
+
+    <div id="overallNextGamesSection" class="collapsible-section" style="display: none;">
+        <h2>Nächste Spiele (Gesamtübersicht)</h2>
+        <div class="next-games-section" id="nextGamesSection">
+            <p>Aktuell keine ungespielten Matches.</p>
+        </div>
+    </div>
+
+    ---
+
+    <h2>K.O.-Phase: Viertelfinale, Halbfinale, Finale</h2>
+    <button class="qualify-button" onclick="qualifyGroupWinners()">Qualifizierte Spieler zur K.O.-Phase hinzufügen</button>
+    <div class="knockout-bracket">
+        <div class="round-column">
+            <h3>Viertelfinale</h3>
+            <div class="match" id="vf_match1">
+                <div class="match-label">Match 1</div>
+                <div class="player-name" id="vf1_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="vf1_player2"></div>
+                <span class="winner result-cell" data-match-id="vf1"></span>
+            </div>
+            <div class="match" id="vf_match2">
+                <div class="match-label">Match 2</div>
+                <div class="player-name" id="vf2_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="vf2_player2"></div>
+                <span class="winner result-cell" data-match-id="vf2"></span>
+            </div>
+        </div>
+
+        <div class="round-column">
+            <h3>Viertelfinale</h3>
+            <div class="match" id="vf_match3">
+                <div class="match-label">Match 3</div>
+                <div class="player-name" id="vf3_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="vf3_player2"></div>
+                <span class="winner result-cell" data-match-id="vf3"></span>
+            </div>
+            <div class="match" id="vf_match4">
+                <div class="match-label">Match 4</div>
+                <div class="player-name" id="vf4_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="vf4_player2"></div>
+                <span class="winner result-cell" data-match-id="vf4"></span>
+            </div>
+        </div>
+
+        <div class="round-column">
+            <h3>Halbfinale</h3>
+            <div class="match" id="hf_match1">
+                <div class="match-label">Halbfinale 1</div>
+                <div class="player-name" id="hf1_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="hf1_player2"></div>
+                <span class="winner result-cell" data-match-id="hf1"></span>
+            </div>
+            <div class="match" id="hf_match2">
+                <div class="match-label">Halbfinale 2</div>
+                <div class="player-name" id="hf2_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="hf2_player2"></div>
+                <span class="winner result-cell" data-match-id="hf2"></span>
+            </div>
+        </div>
+
+        <div class="round-column">
+            <h3>Finale</h3>
+            <div class="match" id="final_match">
+                <div class="match-label">Finale</div>
+                <div class="player-name" id="final_player1"></div>
+                <div class="vs">vs.</div>
+                <div class="player-name" id="final_player2"></div>
+                <span class="winner result-cell" data-match-id="final"></span>
+            </div>
+        </div>
+
+        <div class="final-winner">
+            <h3>TURNIERSIEGER: <span id="tournament_champion"></span></h3>
+        </div>
+    </div>
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3>Ergebnis eingeben</h3>
+            <p><span id="modalPlayer1"></span> <span class="modal-vs">vs.</span> <span id="modalPlayer2"></span></p>
+            <input type="text" id="modalResultInput" placeholder="z.B. 3:1 oder Gewinnername">
+            <button onclick="saveResultFromModal()">Ergebnis speichern</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
