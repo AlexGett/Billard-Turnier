@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
+<html lang="de"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billard Turnierplan (16 Spieler) - PWA</title>
@@ -523,12 +522,12 @@
     <h1>Billard Turnierplan (16 Spieler)</h1>
 
     <div class="collapsible-header collapsed" onclick="toggleSection('instructionsSection')">
-        <span class="toggle-icon">&#9660;</span><h2>Anleitung & Turnierinfos</h2>
+        <span class="toggle-icon">▼</span><h2>Anleitung &amp; Turnierinfos</h2>
     </div>
-    <div id="instructionsSection" class="collapsible-content">
+    <div id="instructionsSection" class="collapsible-content" style="max-height: 0px; display: none;">
         <div class="instructions">
             <ol>
-                <li>Klicke auf "Spieler einrichten", um das Eingabefeld zu öffnen. Trage alle 16 Spielernamen (jeder Name in einer neuen Zeile) ein. Klicke dann auf "Spieler einrichten & Gruppen zuweisen".</li>
+                <li>Klicke auf "Spieler einrichten", um das Eingabefeld zu öffnen. Trage alle 16 Spielernamen (jeder Name in einer neuen Zeile) ein. Klicke dann auf "Spieler einrichten &amp; Gruppen zuweisen".</li>
                 <li>In den Gruppen-Sektionen siehst du die Liste der Matches pro Gruppe. Das **nächste anstehende Spiel ist gelb hervorgehoben**. Klicke auf das Ergebnisfeld eines Matches, um das Ergebnis einzutragen (z.B. '3:1' oder mit den Pfeilen). Gespielte Matches werden durchgestrichen. Die Spieler des nächsten Matches erscheinen auf dem **virtuellen Billardtisch** neben der Matchliste.</li>
                 <li>Wenn alle Gruppenspiele beendet sind, klicke den Button "Qualifizierte Spieler zur K.O.-Phase hinzufügen".</li>
                 <li>Trage dann die Gewinner der K.O.-Matches ein, indem du auf das leere Gewinnerfeld klickst. **Wähle den Gewinner einfach per Klick im Modal aus.** Sie rücken automatisch in die nächste Runde vor.</li>
@@ -545,15 +544,18 @@
     ---
 
     <div class="collapsible-header collapsed" onclick="toggleSection('playerSetupSection')">
-        <span class="toggle-icon">&#9660;</span><h2>Spieler einrichten</h2>
+        <span class="toggle-icon">▼</span><h2>Spieler einrichten</h2>
     </div>
-    <div id="playerSetupSection" class="collapsible-content">
+    <div id="playerSetupSection" class="collapsible-content" style="max-height: 0px; display: none;">
         <div class="player-input-area">
             <label for="playerNamesInput">Trage 16 Spielernamen ein (jeder Name in einer neuen Zeile):</label><br>
-            <textarea id="playerNamesInput" rows="10" placeholder="Spieler 1&#10;Spieler 2&#10;...&#10;Spieler 16"></textarea>
-            <button class="setup-players-button" onclick="setupPlayersAndGroups()">Spieler einrichten & Gruppen zuweisen</button>
+            <textarea id="playerNamesInput" rows="10" placeholder="Spieler 1
+Spieler 2
+...
+Spieler 16"></textarea>
+            <button class="setup-players-button" onclick="setupPlayersAndGroups()">Spieler einrichten &amp; Gruppen zuweisen</button>
         </div>
-        <h2>Zugewiesene Spieler & Gruppen</h2>
+        <h2>Zugewiesene Spieler &amp; Gruppen</h2>
         <table id="assignedPlayerList" class="player-list">
             <thead>
                 <tr>
@@ -562,8 +564,7 @@
                     <th>Gruppe</th>
                 </tr>
             </thead>
-            <tbody>
-                </tbody>
+            <tbody><tr><td>1</td><td>Aeron</td><td>A</td></tr><tr><td>2</td><td>Tarik</td><td>A</td></tr><tr><td>3</td><td>Kael</td><td>A</td></tr><tr><td>4</td><td>Silas</td><td>A</td></tr><tr><td>5</td><td>Jorin</td><td>B</td></tr><tr><td>6</td><td>Elias</td><td>B</td></tr><tr><td>7</td><td>Riven</td><td>B</td></tr><tr><td>8</td><td>Vael</td><td>B</td></tr><tr><td>9</td><td>Lyra</td><td>C</td></tr><tr><td>10</td><td>Seraphina</td><td>C</td></tr><tr><td>11</td><td>Elowen</td><td>C</td></tr><tr><td>12</td><td>Anya</td><td>C</td></tr><tr><td>13</td><td>Briar</td><td>D</td></tr><tr><td>14</td><td>Faelan</td><td>D</td></tr><tr><td>15</td><td>Rhiannon</td><td>D</td></tr><tr><td>16</td><td>Aella</td><td>D</td></tr></tbody>
         </table>
     </div>
 
@@ -576,11 +577,29 @@
                 <div class="group-primary-display">
                     <div class="group-matches-list" id="groupA_matches_list">
                         <h3>Spiele Gruppe A</h3>
-                    </div>
+                    <div class="group-match-item next-up">
+                    <span class="players">Aeron vs. Silas</span>
+                    <span class="result-display" data-group="A" data-match-index="0"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Tarik vs. Kael</span>
+                    <span class="result-display" data-group="A" data-match-index="1"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Silas vs. Tarik</span>
+                    <span class="result-display" data-group="A" data-match-index="2"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Aeron vs. Kael</span>
+                    <span class="result-display" data-group="A" data-match-index="3"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Kael vs. Silas</span>
+                    <span class="result-display" data-group="A" data-match-index="4"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Aeron vs. Tarik</span>
+                    <span class="result-display" data-group="A" data-match-index="5"></span>
+                </div></div>
                     <div class="group-billiard-table" id="groupA_billiard_table">
                         <div class="table-title">Aktuelles Spiel auf Tisch A</div>
-                        <div class="player-on-table" id="groupA_player1_on_table"></div>
-                        <div class="player-on-table" id="groupA_player2_on_table"></div>
+                        <div class="player-on-table" id="groupA_player1_on_table">Aeron</div>
+                        <div class="player-on-table" id="groupA_player2_on_table">Silas</div>
                     </div>
                 </div>
                 <div class="group-details">
@@ -592,15 +611,54 @@
                                 <th>Spieler</th>
                                 <th>Spiele</th>
                                 <th>Siege</th>
-                                <th>Niederlagen</th>
+                                <th>Niederl.</th>
                                 <th>Frames+</th>
                                 <th>Frames-</th>
                                 <th>Diff.</th>
                                 <th>Punkte</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            </tbody>
+                        <tbody><tr data-player-name="Aeron">
+                    <td class="rank"><strong>1</strong></td>
+                    <td>Aeron</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Tarik">
+                    <td class="rank"><strong>2</strong></td>
+                    <td>Tarik</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Kael">
+                    <td class="rank"><strong>3</strong></td>
+                    <td>Kael</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Silas">
+                    <td class="rank"><strong>4</strong></td>
+                    <td>Silas</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr></tbody>
                     </table>
                 </div>
             </div>
@@ -612,11 +670,29 @@
                 <div class="group-primary-display">
                     <div class="group-matches-list" id="groupB_matches_list">
                         <h3>Spiele Gruppe B</h3>
-                    </div>
+                    <div class="group-match-item next-up">
+                    <span class="players">Jorin vs. Vael</span>
+                    <span class="result-display" data-group="B" data-match-index="0"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Elias vs. Riven</span>
+                    <span class="result-display" data-group="B" data-match-index="1"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Vael vs. Elias</span>
+                    <span class="result-display" data-group="B" data-match-index="2"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Jorin vs. Riven</span>
+                    <span class="result-display" data-group="B" data-match-index="3"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Riven vs. Vael</span>
+                    <span class="result-display" data-group="B" data-match-index="4"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Jorin vs. Elias</span>
+                    <span class="result-display" data-group="B" data-match-index="5"></span>
+                </div></div>
                     <div class="group-billiard-table" id="groupB_billiard_table">
                         <div class="table-title">Aktuelles Spiel auf Tisch B</div>
-                        <div class="player-on-table" id="groupB_player1_on_table"></div>
-                        <div class="player-on-table" id="groupB_player2_on_table"></div>
+                        <div class="player-on-table" id="groupB_player1_on_table">Jorin</div>
+                        <div class="player-on-table" id="groupB_player2_on_table">Vael</div>
                     </div>
                 </div>
                 <div class="group-details">
@@ -628,14 +704,54 @@
                                 <th>Spieler</th>
                                 <th>Spiele</th>
                                 <th>Siege</th>
-                                <th>Niederlagen</th>
+                                <th>Niederl.</th>
                                 <th>Frames+</th>
                                 <th>Frames-</th>
                                 <th>Diff.</th>
                                 <th>Punkte</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody><tr data-player-name="Jorin">
+                    <td class="rank"><strong>1</strong></td>
+                    <td>Jorin</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Elias">
+                    <td class="rank"><strong>2</strong></td>
+                    <td>Elias</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Riven">
+                    <td class="rank"><strong>3</strong></td>
+                    <td>Riven</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Vael">
+                    <td class="rank"><strong>4</strong></td>
+                    <td>Vael</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr></tbody>
                     </table>
                 </div>
             </div>
@@ -647,11 +763,29 @@
                 <div class="group-primary-display">
                     <div class="group-matches-list" id="groupC_matches_list">
                         <h3>Spiele Gruppe C</h3>
-                    </div>
+                    <div class="group-match-item next-up">
+                    <span class="players">Lyra vs. Anya</span>
+                    <span class="result-display" data-group="C" data-match-index="0"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Seraphina vs. Elowen</span>
+                    <span class="result-display" data-group="C" data-match-index="1"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Anya vs. Seraphina</span>
+                    <span class="result-display" data-group="C" data-match-index="2"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Lyra vs. Elowen</span>
+                    <span class="result-display" data-group="C" data-match-index="3"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Elowen vs. Anya</span>
+                    <span class="result-display" data-group="C" data-match-index="4"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Lyra vs. Seraphina</span>
+                    <span class="result-display" data-group="C" data-match-index="5"></span>
+                </div></div>
                     <div class="group-billiard-table" id="groupC_billiard_table">
                         <div class="table-title">Aktuelles Spiel auf Tisch C</div>
-                        <div class="player-on-table" id="groupC_player1_on_table"></div>
-                        <div class="player-on-table" id="groupC_player2_on_table"></div>
+                        <div class="player-on-table" id="groupC_player1_on_table">Lyra</div>
+                        <div class="player-on-table" id="groupC_player2_on_table">Anya</div>
                     </div>
                 </div>
                 <div class="group-details">
@@ -663,14 +797,54 @@
                                 <th>Spieler</th>
                                 <th>Spiele</th>
                                 <th>Siege</th>
-                                <th>Niederlagen</th>
+                                <th>Niederl.</th>
                                 <th>Frames+</th>
                                 <th>Frames-</th>
                                 <th>Diff.</th>
                                 <th>Punkte</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody><tr data-player-name="Lyra">
+                    <td class="rank"><strong>1</strong></td>
+                    <td>Lyra</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Seraphina">
+                    <td class="rank"><strong>2</strong></td>
+                    <td>Seraphina</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Elowen">
+                    <td class="rank"><strong>3</strong></td>
+                    <td>Elowen</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Anya">
+                    <td class="rank"><strong>4</strong></td>
+                    <td>Anya</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr></tbody>
                     </table>
                 </div>
             </div>
@@ -682,11 +856,29 @@
                 <div class="group-primary-display">
                     <div class="group-matches-list" id="groupD_matches_list">
                         <h3>Spiele Gruppe D</h3>
-                    </div>
+                    <div class="group-match-item next-up">
+                    <span class="players">Briar vs. Aella</span>
+                    <span class="result-display" data-group="D" data-match-index="0"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Faelan vs. Rhiannon</span>
+                    <span class="result-display" data-group="D" data-match-index="1"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Aella vs. Faelan</span>
+                    <span class="result-display" data-group="D" data-match-index="2"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Briar vs. Rhiannon</span>
+                    <span class="result-display" data-group="D" data-match-index="3"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Rhiannon vs. Aella</span>
+                    <span class="result-display" data-group="D" data-match-index="4"></span>
+                </div><div class="group-match-item">
+                    <span class="players">Briar vs. Faelan</span>
+                    <span class="result-display" data-group="D" data-match-index="5"></span>
+                </div></div>
                     <div class="group-billiard-table" id="groupD_billiard_table">
                         <div class="table-title">Aktuelles Spiel auf Tisch D</div>
-                        <div class="player-on-table" id="groupD_player1_on_table"></div>
-                        <div class="player-on-table" id="groupD_player2_on_table"></div>
+                        <div class="player-on-table" id="groupD_player1_on_table">Briar</div>
+                        <div class="player-on-table" id="groupD_player2_on_table">Aella</div>
                     </div>
                 </div>
                 <div class="group-details">
@@ -698,14 +890,54 @@
                                 <th>Spieler</th>
                                 <th>Spiele</th>
                                 <th>Siege</th>
-                                <th>Niederlagen</th>
+                                <th>Niederl.</th>
                                 <th>Frames+</th>
                                 <th>Frames-</th>
                                 <th>Diff.</th>
                                 <th>Punkte</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody><tr data-player-name="Briar">
+                    <td class="rank"><strong>1</strong></td>
+                    <td>Briar</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Faelan">
+                    <td class="rank"><strong>2</strong></td>
+                    <td>Faelan</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Rhiannon">
+                    <td class="rank"><strong>3</strong></td>
+                    <td>Rhiannon</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr><tr data-player-name="Aella">
+                    <td class="rank"><strong>4</strong></td>
+                    <td>Aella</td>
+                    <td class="games-played">0</td>
+                    <td class="wins">0</td>
+                    <td class="losses">0</td>
+                    <td class="frames-plus">0</td>
+                    <td class="frames-minus">0</td>
+                    <td class="frames-diff">0</td>
+                    <td class="points">0</td>
+                </tr></tbody>
                     </table>
                 </div>
             </div>
@@ -714,12 +946,10 @@
     ---
 
     <div class="collapsible-header collapsed" onclick="toggleSection('nextGamesSectionWrapper')">
-        <span class="toggle-icon">&#9660;</span><h2>Nächste Spiele (Gesamtübersicht)</h2>
+        <span class="toggle-icon">▼</span><h2>Nächste Spiele (Gesamtübersicht)</h2>
     </div>
-    <div id="nextGamesSectionWrapper" class="collapsible-content">
-        <div class="next-games-section" id="nextGamesSection">
-            <p>Aktuell keine ungespielten Matches in der Gruppenphase.</p>
-        </div>
+    <div id="nextGamesSectionWrapper" class="collapsible-content" style="max-height: 0px; display: none;">
+        <div class="next-games-section" id="nextGamesSection"><h3>Ungespielte Matches (Gesamtübersicht):</h3><div class="next-game-item">Gruppe A: <span class="next-game-player">Aeron</span> vs. <span class="next-game-player">Silas</span></div><div class="next-game-item">Gruppe A: <span class="next-game-player">Tarik</span> vs. <span class="next-game-player">Kael</span></div><div class="next-game-item">Gruppe A: <span class="next-game-player">Silas</span> vs. <span class="next-game-player">Tarik</span></div><div class="next-game-item">Gruppe A: <span class="next-game-player">Aeron</span> vs. <span class="next-game-player">Kael</span></div><div class="next-game-item">Gruppe A: <span class="next-game-player">Kael</span> vs. <span class="next-game-player">Silas</span></div><div class="next-game-item">Gruppe A: <span class="next-game-player">Aeron</span> vs. <span class="next-game-player">Tarik</span></div><div class="next-game-item">Gruppe B: <span class="next-game-player">Jorin</span> vs. <span class="next-game-player">Vael</span></div><div class="next-game-item">Gruppe B: <span class="next-game-player">Elias</span> vs. <span class="next-game-player">Riven</span></div><div class="next-game-item">Gruppe B: <span class="next-game-player">Vael</span> vs. <span class="next-game-player">Elias</span></div><div class="next-game-item">Gruppe B: <span class="next-game-player">Jorin</span> vs. <span class="next-game-player">Riven</span></div><div class="next-game-item">Gruppe B: <span class="next-game-player">Riven</span> vs. <span class="next-game-player">Vael</span></div><div class="next-game-item">Gruppe B: <span class="next-game-player">Jorin</span> vs. <span class="next-game-player">Elias</span></div><div class="next-game-item">Gruppe C: <span class="next-game-player">Lyra</span> vs. <span class="next-game-player">Anya</span></div><div class="next-game-item">Gruppe C: <span class="next-game-player">Seraphina</span> vs. <span class="next-game-player">Elowen</span></div><div class="next-game-item">Gruppe C: <span class="next-game-player">Anya</span> vs. <span class="next-game-player">Seraphina</span></div><div class="next-game-item">Gruppe C: <span class="next-game-player">Lyra</span> vs. <span class="next-game-player">Elowen</span></div><div class="next-game-item">Gruppe C: <span class="next-game-player">Elowen</span> vs. <span class="next-game-player">Anya</span></div><div class="next-game-item">Gruppe C: <span class="next-game-player">Lyra</span> vs. <span class="next-game-player">Seraphina</span></div><div class="next-game-item">Gruppe D: <span class="next-game-player">Briar</span> vs. <span class="next-game-player">Aella</span></div><div class="next-game-item">Gruppe D: <span class="next-game-player">Faelan</span> vs. <span class="next-game-player">Rhiannon</span></div><div class="next-game-item">Gruppe D: <span class="next-game-player">Aella</span> vs. <span class="next-game-player">Faelan</span></div><div class="next-game-item">Gruppe D: <span class="next-game-player">Briar</span> vs. <span class="next-game-player">Rhiannon</span></div><div class="next-game-item">Gruppe D: <span class="next-game-player">Rhiannon</span> vs. <span class="next-game-player">Aella</span></div><div class="next-game-item">Gruppe D: <span class="next-game-player">Briar</span> vs. <span class="next-game-player">Faelan</span></div></div>
     </div>
 
     ---
@@ -799,7 +1029,7 @@
 
     <div id="resultModal" class="modal">
         <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
+            <span class="close-button" onclick="closeModal()">×</span>
             <h3>Ergebnis eingeben</h3>
             <p><span id="modalPlayer1"></span> <span class="modal-vs">vs.</span> <span id="modalPlayer2"></span></p>
             
@@ -1520,5 +1750,7 @@
             updateOverallNextGamesDisplay(); // Erste Anzeige der Gesamtübersicht der nächsten Spiele
         });
     </script>
+
+
 </body>
 </html>
