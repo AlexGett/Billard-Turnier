@@ -8,7 +8,7 @@
   "theme_color": "#0056b3",
   "icons": [
     {
-  "src": "windows11/LargeTile.scale-100.png",
+  "src": "LargeTile.scale-100.png",
   "sizes": "310x310"
     }
   ]
