@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billard-turnier-v1.3'; // Ändere die Version bei Änderungen an den gecachten Dateien!
+const CACHE_NAME = 'billard-turnier-v1.4'; // Ändere die Version bei Änderungen an den gecachten Dateien!
 const urlsToCache = [
   '/',
   '/index.html',
