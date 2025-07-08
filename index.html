@@ -25,7 +25,17 @@
             flex-wrap: wrap; /* Erlaubt Umbruch auf kleineren Bildschirmen */
             gap: 20px; /* Abstand zwischen den Gruppen */
             justify-content: center; /* Zentriert die Gruppen */
+            align-items: flex-start; /* Füge hier align-items hinzu, um alle Gruppen oben auszurichten */
         }
+
+        /* NEU: Stil für die direkt in .all-groups-container enthaltenen divs (die Wrapper für jede Gruppe) */
+        .all-groups-container > div { /* Selektiert die direkten div-Kinder des all-groups-container */
+            flex: 1 1 calc(50% - 10px); /* Nimmt 50% Breite minus halbem Gap */
+            min-width: 450px; /* Mindestbreite, damit der Inhalt nicht zu stark schrumpft */
+            max-width: calc(50% - 10px); /* Maximal 50% abzüglich Gap */
+            box-sizing: border-box; /* Stellt sicher, dass Padding/Border in die Breite einfließen */
+        }
+
 
         /* Flexbox für Gruppen-Sektionen */
         .group-section {
@@ -34,10 +44,8 @@
             gap: 20px;
             margin-bottom: 0; /* Entferne den unteren Margin, da der Elterncontainer Gap hat */
             align-items: flex-start;
-            /* NEU: Grundbreite für jede Gruppe, die zwei nebeneinander erlaubt */
-            flex: 1 1 calc(50% - 10px); /* Nimmt 50% Breite minus halbem Gap */
-            min-width: 450px; /* Mindestbreite, damit der Inhalt nicht zu stark schrumpft */
-            max-width: calc(50% - 10px); /* Maximal 50% abzüglich Gap */
+            /* Diese Flex-Eigenschaften sollten nur die Aufteilung INNERHALB einer Gruppe steuern */
+            width: 100%; /* Sichert, dass die innere Sektion die volle Breite ihres Elternelements nutzt */
         }
         /* Sicherstellen, dass der H2-Titel einer Gruppe über der Gruppe selbst ist */
         .group-header {
@@ -455,20 +463,16 @@
         }
 
         /* Media Queries for Responsiveness */
-        @media (max-width: 1300px) { /* Anpassen für 2 Spalten Layout */
-            .group-section {
+        @media (max-width: 1300px) { /* Anpassen für 1 Spalte Layout */
+            .all-groups-container > div {
                 flex: 1 1 100%; /* Jede Gruppe nimmt volle Breite */
                 max-width: 100%;
                 min-width: unset; /* Mindestbreite zurücksetzen */
+                margin-bottom: 20px; /* Abstand zwischen gestapelten Gruppen */
             }
-            .all-groups-container {
-                gap: 0; /* Kein Gap mehr im container, da section selbst den Margin unten hat */
+            .all-groups-container > div:last-child {
+                margin-bottom: 0; /* Kein Margin für die letzte Gruppe */
             }
-            .group-section {
-                margin-bottom: 40px; /* Füge Margin unten wieder hinzu */
-            }
-        }
-        @media (max-width: 768px) {
             .group-section {
                 flex-direction: column; /* Stapelt Gruppen-Details unter Matchliste */
                 align-items: stretch; /* Volle Breite */
