@@ -4,7 +4,7 @@ const urlsToCache = [
   '/index.html',
   '/manifest.json',
   // Füge hier die Pfade zu allen deinen Icons hinzu, die du im 'icons/' Ordner hast
-  '/icons/icon-72x72.png',
+  '/icons/LargeTile.scale-100.png',
   '/icons/icon-96x96.png',
   '/icons/icon-128x128.png',
   '/icons/icon-144x144.png',
