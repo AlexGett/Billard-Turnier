@@ -1,12 +1,21 @@
-const CACHE_NAME = 'billard-turnier-v2.3'; // Ändere die Version bei Änderungen an den gecachten Dateien!
+const CACHE_NAME = 'billard-turnier-v2.5'; // Ändere die Version bei Änderungen an den gecachten Dateien!
+                                          // Habe die Version hier auf v1.3 erhöht, da sich die gecachten Dateien ändern.
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  // Füge hier die Pfade zu allen deinen Icons hinzu, die du im 'icons/' Ordner hast
-  '/icons/LargeTile.scale-100.png',
-  '/icons/android-launchericon-512-512.png',
-  '/icons/1024.png',
+  // Füge hier die Pfade zu ALLEN deinen Icons hinzu, die du im 'icons/' Ordner hast
+  '/icons/icon-72x72.png',
+  '/icons/icon-96x96.png',
+  '/icons/icon-128x128.png',
+  '/icons/icon-144x144.png',
+  '/icons/icon-152x152.png',
+  '/icons/icon-192x192.png',
+  '/icons/icon-384x384.png',
+  '/icons/icon-512x512.png',
+  '/icons/LargeTile.scale-100.png', // Korrigierter Pfad für dein vorhandenes Icon
+  '/icons/android-launchericon-512-512.png', // Korrigierter Pfad für dein vorhandenes Icon
+  '/icons/1024.png' // Korrigierter Pfad für dein vorhandenes Icon
 ];
 
 self.addEventListener('install', event => {
