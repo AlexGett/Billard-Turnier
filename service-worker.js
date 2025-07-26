@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billard-tournament-v1';
+const CACHE_NAME = 'billard-tournament-v9.1';
 const urlsToCache = [
   './',
   './index.html',
