@@ -1278,6 +1278,8 @@
             isKnockoutModal = isKoMatch;
             selectedKnockoutWinner = ''; // Zurücksetzen der Auswahl
 
+            console.log('openResultModal called. selectedKnockoutWinner reset to:', selectedKnockoutWinner);
+
             const groupPhaseScoreInput = document.getElementById('groupPhaseScoreInput');
             const knockoutWinnerSelection = document.getElementById('knockoutWinnerSelection');
             const score1Input = document.getElementById('score1');
@@ -1358,6 +1360,28 @@
         }
 
         /**
+         * Wählt den Gewinner im K.O.-Modal aus.
+         * @param {HTMLElement} element - Das angeklickte Gewinner-Option-Element.
+         * @param {boolean} reset - Ob die Auswahl zurückgesetzt werden soll (für "Kein Gewinner").
+         */
+        function selectWinner(element, reset = false) {
+            // Alle Optionen deselektieren
+            document.querySelectorAll('.knockout-winner-selection .winner-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            // Aktuelle Option auswählen
+            if (!reset) {
+                element.classList.add('selected');
+                selectedKnockoutWinner = element.dataset.winner;
+                console.log('selectWinner: selectedKnockoutWinner set to', selectedKnockoutWinner);
+            } else {
+                selectedKnockoutWinner = 'Kein Gewinner'; // Spezieller Wert für Reset
+                console.log('selectWinner: selectedKnockoutWinner reset to', selectedKnockoutWinner);
+            }
+        }
+
+        /**
          * Speichert das Ergebnis aus dem Modal.
          */
         function saveResultFromModal() {
@@ -1390,11 +1414,21 @@
          * Speichert das Ergebnis eines K.O.-Matches.
          */
         function saveKnockoutResult() {
+            console.log('saveKnockoutResult called. Current selectedKnockoutWinner (at start of function):', selectedKnockoutWinner);
             const matchId = currentResultCell.dataset.matchId;
             const matchInfo = knockoutMatches[matchId];
 
             const player1Name = document.getElementById(matchInfo.player1).textContent;
             const player2Name = document.getElementById(matchInfo.player2).textContent;
+
+            console.log(`Match ID: ${matchId}, Player1: ${player1Name}, Player2: ${player2Name}`);
+            
+            // Stelle sicher, dass ein Gewinner ausgewählt wurde
+            if (!selectedKnockoutWinner) {
+                alert('Bitte wähle einen Gewinner aus.');
+                console.error('saveKnockoutResult: selectedKnockoutWinner is empty! Alert triggered.');
+                return;
+            }
 
             // Wenn "Kein Gewinner" gewählt wurde, setze das Match zurück
             if (selectedKnockoutWinner === 'Kein Gewinner') {
@@ -1413,24 +1447,22 @@
                     trophyAnimationContainer.classList.remove('active');
                 }
                 alert('Match-Ergebnis zurückgesetzt.');
-                return;
-            }
-
-            // Stelle sicher, dass ein Gewinner ausgewählt wurde
-            if (!selectedKnockoutWinner) {
-                alert('Bitte wähle einen Gewinner aus.');
+                console.log('Match-Ergebnis zurückgesetzt (Kein Gewinner gewählt).');
                 return;
             }
 
             // Setze den Gewinner in die Zelle
-            currentResultCell.textContent = selectedKnoutWinner;
+            currentResultCell.textContent = selectedKnockoutWinner;
             currentResultCell.classList.add('played');
+            console.log(`Winner set in current cell: ${selectedKnockoutWinner}`);
 
             // Wenn es nicht das Finale ist, rücke den Gewinner in die nächste Runde vor
             if (matchInfo.nextPlayer && matchInfo.nextPlayer !== 'tournament_champion') {
                 const nextPlayerElement = document.getElementById(matchInfo.nextPlayer);
+                console.log(`Next player target ID: ${matchInfo.nextPlayer}`);
                 if (nextPlayerElement) {
                     nextPlayerElement.textContent = selectedKnockoutWinner;
+                    console.log(`Winner advanced to next round: ${matchInfo.nextPlayer} -> ${selectedKnockoutWinner}`);
                     // Wenn der nächste Spieler gesetzt wird, stelle sicher, dass die zugehörige Gewinner-Zelle leer und klickbar ist
                     const nextMatchId = nextPlayerElement.id.substring(0, nextPlayerElement.id.indexOf('_player')); // z.B. hf1
                     const nextWinnerCell = document.querySelector(`.winner.result-cell[data-match-id="${nextMatchId}"]`);
@@ -1438,37 +1470,21 @@
                         nextWinnerCell.textContent = ''; // Leeren, falls schon ein Platzhalter drin war
                         nextWinnerCell.classList.remove('played'); // Entfernen der "gespielt"-Klasse
                         nextWinnerCell.onclick = () => openResultModal(nextWinnerCell, true); // Klickbar machen
+                        console.log(`Next winner cell (${nextMatchId}) cleared and made clickable.`);
                     }
+                } else {
+                    console.error(`Element with ID ${matchInfo.nextPlayer} not found for next player advancement.`);
                 }
             } else if (matchInfo.nextPlayer === 'tournament_champion') {
                 document.getElementById('tournament_champion').textContent = selectedKnockoutWinner;
+                console.log(`Tournament Champion set: ${selectedKnockoutWinner}`);
                 // Show trophy animation
                 animatedWinnerName.textContent = selectedKnockoutWinner;
                 trophyAnimationContainer.classList.add('active');
+                console.log('Trophy animation activated.');
                 // Removed the setTimeout to hide, now it only hides on click.
             }
         }
-
-        /**
-         * Wählt den Gewinner im K.O.-Modal aus.
-         * @param {HTMLElement} element - Das angeklickte Gewinner-Option-Element.
-         * @param {boolean} reset - True, wenn das Match zurückgesetzt werden soll.
-         */
-        function selectWinner(element, reset = false) {
-            // Alle Optionen deselektieren
-            document.querySelectorAll('.knockout-winner-selection .winner-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-
-            // Aktuelle Option auswählen
-            if (!reset) {
-                element.classList.add('selected');
-                selectedKnockoutWinner = element.dataset.winner;
-            } else {
-                selectedKnockoutWinner = 'Kein Gewinner'; // Spezieller Wert für Reset
-            }
-        }
-
 
         /**
          * Aktualisiert die Rangliste und Punkte für eine Gruppe.
