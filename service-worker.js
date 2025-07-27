@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billard-tournament-v9.4';
+const CACHE_NAME = 'billard-tournament-v9.5';
 const urlsToCache = [
   '/', // Der Root-Pfad deiner Anwendung
   '/index.html',
