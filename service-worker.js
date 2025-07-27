@@ -1,15 +1,18 @@
-const CACHE_NAME = 'billard-tournament-v9.5';
+const CACHE_NAME = 'billard-tournament-v9.4';
 const urlsToCache = [
-  '/', // Der Root-Pfad deiner Anwendung
-  '/index.html',
-  '/manifest.json',
-  '/service-worker.js',
-  '/Logo.png',
-  '/Trophy.png',
-  // Icon-Dateien aus der manifest.json
+  '/',                     // Die Root-URL deiner PWA
+  '/index.html',           // Deine Haupt-HTML-Datei
+  '/manifest.json',        // Dein Web-App-Manifest
+  '/service-worker.js',    // Dieser Service Worker selbst
+  '/Logo.png',             // Dein Logo-Bild
+  '/Trophy.png',           // Dein Trophäen-Bild
+  // Alle Icons, die in der manifest.json verwendet werden
   '/icons/192.png',
   '/icons/LargeTile.scale-100.png',
   '/icons/android-launchericon-512-512.png'
+  // Füge hier weitere Assets hinzu, die gecacht werden sollen, z.B. externe CSS oder JS:
+  // '/css/style.css',
+  // '/js/app.js'
 ];
 
 self.addEventListener('install', (event) => {
