@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="mainTitle">Billard Turnierplan - PWA</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/Billard-Turnier/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Billard Turnier">
@@ -16,7 +16,7 @@
     	    margin: 20px;
     	    background-color: #FFFFFF;
     	    color: #000000;
-    	    background-image: url(Logo.png);
+    	    background-image: url(/Billard-Turnier/Logo.png); /* ANGEPASSTER PFAD */
    	    background-repeat: no-repeat;
     	    background-position: 860px 15px;
      	    background-attachment: fixed;
@@ -744,7 +744,7 @@
     </div>
 
     <div id="trophyAnimationContainer">
-        <img src="Trophy.png" alt="Trophy" id="trophyImage"> <div class="winner-text">HERZLICHEN GLÜCKWUNSCH!</div>
+        <img src="/Billard-Turnier/Trophy.png" alt="Trophy" id="trophyImage"> <div class="winner-text">HERZLICHEN GLÜCKWUNSCH!</div>
         <div class="winner-text" id="animatedWinnerName"></div>
     </div>
 
@@ -1666,10 +1666,10 @@
             document.getElementById('knockoutPhaseTitle').scrollIntoView({ behavior: 'smooth' }); // Zum K.O.-Bereich scrollen
         }
 
-        // Service Worker Registrierung für PWA (unverändert)
+        // Service Worker Registrierung für PWA (ANGEPASSTER PFAD)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('/Billard-Turnier/service-worker.js')
                     .then(registration => {
                         console.log('ServiceWorker registriert mit Scope: ', registration.scope);
                     })

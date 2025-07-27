@@ -1,18 +1,18 @@
-const CACHE_NAME = 'billard-tournament-v10.2';
+const CACHE_NAME = 'billard-tournament-v10.5';
 const urlsToCache = [
-  '/',    // Die Root-URL deiner PWA
-  '/index.html',           // Deine Haupt-HTML-Datei
-  '/manifest.json',        // Dein Web-App-Manifest
-  '/service-worker.js',    // Dieser Service Worker selbst
-  '/Logo.png',             // Dein Logo-Bild
-  '/Trophy.png',           // Dein Trophäen-Bild
-  // Alle Icons, die in der manifest.json verwendet werden
-  '/icons/192.png',
-  '/icons/LargeTile.scale-100.png',
-  '/icons/android-launchericon-512-512.png'
+  '/Billard-Turnier/',                     // Die Root-URL deiner PWA im Repository
+  '/Billard-Turnier/index.html',           // Deine Haupt-HTML-Datei
+  '/Billard-Turnier/manifest.json',        // Dein Web-App-Manifest
+  '/Billard-Turnier/service-worker.js',    // Dieser Service Worker selbst
+  '/Billard-Turnier/Logo.png',             // Dein Logo-Bild (falls im Root des Repo-Ordners)
+  '/Billard-Turnier/Trophy.png',           // Dein Trophäen-Bild (falls im Root des Repo-Ordners)
+  // Alle Icons, die in der manifest.json verwendet werden, mit dem vollständigen Pfad
+  '/Billard-Turnier/icons/192.png',
+  '/Billard-Turnier/icons/LargeTile.scale-100.png',
+  '/Billard-Turnier/icons/android-launchericon-512-512.png'
   // Füge hier weitere Assets hinzu, die gecacht werden sollen, z.B. externe CSS oder JS:
-  // '/css/style.css',
-  // '/js/app.js'
+  // '/Billard-Turnier/css/style.css', // Beispiel
+  // '/Billard-Turnier/js/app.js'    // Beispiel
 ];
 
 self.addEventListener('install', (event) => {
