@@ -1,12 +1,15 @@
 const CACHE_NAME = 'billard-tournament-v9.4';
 const urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json',
-  './service-worker.js',
-  './Logo.png', // Stellen Sie sicher, dass diese Datei existiert!
-  './Trophy.png', // Stellen Sie sicher, dass diese Datei existiert!
-  // Fügen Sie hier weitere Assets hinzu, die gecacht werden sollen (z.B. CSS, JS-Dateien)
+  '/', // Der Root-Pfad deiner Anwendung
+  '/index.html',
+  '/manifest.json',
+  '/service-worker.js',
+  '/Logo.png',
+  '/Trophy.png',
+  // Icon-Dateien aus der manifest.json
+  '/icons/192.png',
+  '/icons/LargeTile.scale-100.png',
+  '/icons/android-launchericon-512-512.png'
 ];
 
 self.addEventListener('install', (event) => {

@@ -3,17 +3,17 @@
   "name": "Billard Turnierplan - PWA",
   "icons": [
     {
-      "src": "./icons/192.png",
+      "src": "/icons/192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "./icons/LargeTile.scale-100.png",
+      "src": "/icons/LargeTile.scale-100.png",
       "type": "image/png",
       "sizes": "310x310"
     },
     {
-      "src": "./icons/android-launchericon-512-512.png",
+      "src": "/icons/android-launchericon-512-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
