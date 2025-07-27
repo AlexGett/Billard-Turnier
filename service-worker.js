@@ -1,6 +1,6 @@
-const CACHE_NAME = 'billard-tournament-v10.1';
+const CACHE_NAME = 'billard-tournament-v10.2';
 const urlsToCache = [
-  'https://alexgett.github.io/Billard-Turnier/',    // Die Root-URL deiner PWA
+  '/',    // Die Root-URL deiner PWA
   '/index.html',           // Deine Haupt-HTML-Datei
   '/manifest.json',        // Dein Web-App-Manifest
   '/service-worker.js',    // Dieser Service Worker selbst
