@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billard-tournament-v9.4';
+const CACHE_NAME = 'billard-tournament-v9.8';
 const urlsToCache = [
   '/',                     // Die Root-URL deiner PWA
   '/index.html',           // Deine Haupt-HTML-Datei
